@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import totalScoreCounter from "./scoreCounter"; // replace with the actual path
+import totalScoreCounter from "./scoreCounter";
 
 export const CalcForm = () => {
   const [RR, setRR] = useState("");
@@ -25,10 +25,15 @@ export const CalcForm = () => {
   };
 
   return (
-    <div className="p-8 h-screen">
-      <form className="bg-gray-500 p-4 flex-row m-auto" onSubmit={handleSubmit}>
-        <div className="flex flex-col">
-          <label htmlFor="RR">Respiratory Rate</label>
+    <div className="p-2 h-screen">
+      <form
+        className="bg-slate-400 p-4 flex-row m-auto"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="RR">
+            Respiratory Rate
+          </label>
           <input
             type="number"
             id="RR"
@@ -37,8 +42,10 @@ export const CalcForm = () => {
             onChange={(e) => setRR(e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="SpO2">Saturation</label>
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="SpO2">
+            Saturation
+          </label>
           <input
             type="number"
             id="SpO2"
@@ -47,8 +54,10 @@ export const CalcForm = () => {
             onChange={(e) => setSpO2(e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="administeredOxygen">Distributed Oxygen</label>
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="administeredOxygen">
+            Distributed Oxygen
+          </label>
           <input
             type="text"
             id="administeredOxygen"
@@ -57,8 +66,10 @@ export const CalcForm = () => {
             onChange={(e) => setAdministeredOxygen(e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="systolicBP">Systolic Blood pressure</label>
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="systolicBP">
+            Systolic Blood pressure
+          </label>
           <input
             type="number"
             id="systolicBP"
@@ -67,8 +78,10 @@ export const CalcForm = () => {
             onChange={(e) => setSystolicBP(e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="HR">Heart Rate</label>
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="HR">
+            Heart Rate
+          </label>
           <input
             type="number"
             id="HR"
@@ -77,8 +90,10 @@ export const CalcForm = () => {
             onChange={(e) => setHR(e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="avpu">AVPU</label>
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="avpu">
+            AVPU
+          </label>
           <input
             type="text"
             id="avpu"
@@ -87,8 +102,10 @@ export const CalcForm = () => {
             onChange={(e) => setAvpu(e.target.value)}
           />
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="temp">Temperature</label>
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="temp">
+            Temperature
+          </label>
           <input
             type="number"
             id="temp"
@@ -97,7 +114,14 @@ export const CalcForm = () => {
             onChange={(e) => setTemp(e.target.value)}
           />
         </div>
-        <button type="submit">Calculate Score</button>
+        <div className="text-center items-center justify-center">
+          <button
+            className=" bg-blue-300 p-2 rounded-md m-auto w-1/2"
+            type="submit"
+          >
+            Calculate Score
+          </button>
+        </div>
       </form>
     </div>
   );
