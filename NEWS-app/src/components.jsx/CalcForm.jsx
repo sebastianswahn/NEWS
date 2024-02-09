@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import totalScoreCounter from "./scoreCounter";
+import ScoreModal from "./scoreModal";
 
 export const CalcForm = () => {
   const [RR, setRR] = useState("");
@@ -9,10 +10,11 @@ export const CalcForm = () => {
   const [HR, setHR] = useState("");
   const [avpu, setAvpu] = useState("");
   const [temp, setTemp] = useState("");
+  const [totalScore, setTotalScore] = useState(0);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const totalScore = totalScoreCounter(
+    const score = totalScoreCounter(
       Number(RR),
       Number(SpO2),
       Number(temp),
@@ -21,15 +23,17 @@ export const CalcForm = () => {
       administeredOxygen,
       avpu
     );
+    setTotalScore(score);
     console.log(totalScore);
   };
 
   return (
-    <div className="p-2 h-screen">
+    <div className="p-2 h-screen z-10">
       <form
         className="bg-slate-400 p-4 flex-row m-auto"
         onSubmit={handleSubmit}
       >
+        <ScoreModal totalScore={totalScore} />
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="RR">
             Respiratory Rate
