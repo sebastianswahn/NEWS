@@ -92,14 +92,21 @@ function administeredOxygenScoreCounter(administeredOxygen) {
 
 function avpuScoreCounter(avpu) {
   let avpuScore = 0;
-  if (avpu === "A") {
-    avpuScore = 0;
-  } else if (avpu === "V") {
-    avpuScore = 1;
-  } else if (avpu === "P") {
-    avpuScore = 2;
-  } else if (avpu === "U") {
-    avpuScore = 3;
+  switch (avpu) {
+    case "A":
+      avpuScore = 0;
+      break;
+    case "V":
+      avpuScore = 1;
+      break;
+    case "P":
+      avpuScore = 2;
+      break;
+    case "U":
+      avpuScore = 3;
+      break;
+    default:
+      avpuScore = 0;
   }
   return avpuScore;
 }

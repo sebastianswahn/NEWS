@@ -106,13 +106,17 @@ export const CalcForm = () => {
           <label className="pb-2" htmlFor="avpu">
             AVPU
           </label>
-          <input
-            type="text"
+          <select
             id="avpu"
             name="avpu"
             value={avpu}
             onChange={(e) => setAvpu(e.target.value)}
-          />
+          >
+            <option value="A">A</option>
+            <option value="V">V</option>
+            <option value="P">P</option>
+            <option value="U">U</option>
+          </select>
         </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="temp">
