@@ -4,17 +4,56 @@ import ScoreModal from "./scoreModal";
 
 export const CalcForm = () => {
   const [RR, setRR] = useState("");
+  const [RRError, setRRError] = useState("");
   const [SpO2, setSpO2] = useState("");
+  const [SpO2Error, setSpO2Error] = useState("");
   const [administeredOxygen, setAdministeredOxygen] = useState("");
   const [systolicBP, setSystolicBP] = useState("");
+  const [systolicBPError, setsystolicBPError] = useState("");
   const [HR, setHR] = useState("");
+  const [HRError, setHRError] = useState("");
   const [avpu, setAvpu] = useState("");
   const [temp, setTemp] = useState("");
+  const [tempError, setTempError] = useState("");
   const [totalScore, setTotalScore] = useState(0);
   const [showScoreModal, setshowScoreModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (RR < 1 || RR > 100) {
+      setRRError("Please enter a number between 1-100");
+      return;
+    } else {
+      setRRError("");
+    }
+    if (SpO2 < 1 || SpO2 > 100) {
+      setSpO2Error("Please enter a % value between 1-100");
+      return;
+    } else {
+      setSpO2Error("");
+    }
+    if (systolicBP < 1 || systolicBP > 350) {
+      setsystolicBPError(
+        "Please enter a valid millimeters of mercury systolic blood pressure value"
+      );
+      return;
+    } else {
+      setsystolicBPError("");
+    }
+    if (HR < 1 || HR > 350) {
+      setHRError("Please enter a valid heart rate");
+      return;
+    } else {
+      setHRError("");
+    }
+    if (temp < 10 || temp > 50) {
+      setTempError("Please enter a valid temperature in celcius");
+      return;
+    } else {
+      setTempError("");
+    }
+
     const score = totalScoreCounter(
       Number(RR),
       Number(SpO2),
@@ -53,6 +92,7 @@ export const CalcForm = () => {
             value={RR}
             onChange={(e) => setRR(e.target.value)}
           />
+          {RRError && <p className="text-red-500">{RRError}</p>}
         </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="SpO2">
@@ -65,6 +105,7 @@ export const CalcForm = () => {
             value={SpO2}
             onChange={(e) => setSpO2(e.target.value)}
           />
+          {SpO2Error && <p className="text-red-500">{SpO2Error}</p>}
         </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="administeredOxygen">
@@ -91,6 +132,7 @@ export const CalcForm = () => {
             value={systolicBP}
             onChange={(e) => setSystolicBP(e.target.value)}
           />
+          {systolicBPError && <p className="text-red-500">{systolicBPError}</p>}
         </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="HR">
@@ -103,6 +145,7 @@ export const CalcForm = () => {
             value={HR}
             onChange={(e) => setHR(e.target.value)}
           />
+          {HRError && <p className="text-red-500">{HRError}</p>}
         </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="avpu">
@@ -131,6 +174,7 @@ export const CalcForm = () => {
             value={temp}
             onChange={(e) => setTemp(e.target.value)}
           />
+          {tempError && <p className="text-red-500">{tempError}</p>}
         </div>
         <div className="text-center items-center justify-center">
           <button
