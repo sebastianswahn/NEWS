@@ -82,10 +82,15 @@ function bloodPressureScoreCounter(systolicBP) {
 
 function administeredOxygenScoreCounter(administeredOxygen) {
   let administeredOxygenScore = 0;
-  if (administeredOxygen === "Yes") {
-    administeredOxygenScore = 2;
-  } else if (administeredOxygen === "No") {
-    administeredOxygenScore = 0;
+  switch (administeredOxygen) {
+    case "Yes":
+      administeredOxygenScore = 2;
+      break;
+    case "No":
+      administeredOxygenScore = 0;
+      break;
+    default:
+      administeredOxygenScore = 0;
   }
   return administeredOxygenScore;
 }

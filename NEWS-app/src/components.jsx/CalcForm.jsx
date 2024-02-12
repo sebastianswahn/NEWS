@@ -70,13 +70,15 @@ export const CalcForm = () => {
           <label className="pb-2" htmlFor="administeredOxygen">
             Distributed Oxygen
           </label>
-          <input
-            type="text"
+          <select
             id="administeredOxygen"
             name="administeredOxygen"
             value={administeredOxygen}
             onChange={(e) => setAdministeredOxygen(e.target.value)}
-          />
+          >
+            <option>Yes</option>
+            <option>No</option>
+          </select>
         </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="systolicBP">
