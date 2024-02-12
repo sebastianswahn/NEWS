@@ -18,6 +18,7 @@ export const CalcForm = () => {
   const [totalScore, setTotalScore] = useState(0);
   const [showScoreModal, setshowScoreModal] = useState(false);
   const [warning, setWarning] = useState("");
+  const [hasThreePoints, setHasThreePoints] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -75,7 +76,7 @@ export const CalcForm = () => {
       setWarning("");
     }
 
-    const score = totalScoreCounter(
+    const { totalScore, hasThreePoints } = totalScoreCounter(
       Number(RR),
       Number(SpO2),
       Number(temp),
@@ -84,9 +85,10 @@ export const CalcForm = () => {
       administeredOxygen,
       avpu
     );
-    setTotalScore(score);
+    setTotalScore(totalScore);
+    setHasThreePoints(hasThreePoints);
     setshowScoreModal(true);
-    console.log(totalScore);
+    console.log(totalScore, hasThreePoints);
   };
 
   const hideModal = () => {
@@ -104,6 +106,7 @@ export const CalcForm = () => {
             totalScore={totalScore}
             hideModal={hideModal}
             warning={warning}
+            hasThreePoints={hasThreePoints}
           />
         )}
         <div className="flex flex-col p-4">

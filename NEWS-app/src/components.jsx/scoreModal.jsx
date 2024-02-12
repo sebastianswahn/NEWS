@@ -1,10 +1,13 @@
 import React from "react";
 
-function ScoreModal({ totalScore, hideModal, warning }) {
+function ScoreModal({ totalScore, hideModal, warning, hasThreePoints }) {
   let bgColorClass = "bg-emerald-500";
   let scoreAdvice = "";
 
-  if (totalScore <= 4) {
+  if (hasThreePoints && totalScore <= 4) {
+    bgColorClass = "bg-yellow-300";
+    scoreAdvice = "Urgent department based measures";
+  } else if (totalScore <= 4) {
     bgColorClass = "bg-slate-400";
     scoreAdvice = "Department based actions";
   } else if (totalScore >= 5 && totalScore <= 6) {

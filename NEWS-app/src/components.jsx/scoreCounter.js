@@ -138,15 +138,20 @@ function totalScoreCounter(
   administeredOxygen,
   avpu
 ) {
-  return (
-    respiratoryScoreCounter(RR) +
-    saturationScoreCounter(SpO2) +
-    temperatureScoreCounter(temp) +
-    heartRateScoreCounter(HR) +
-    bloodPressureScoreCounter(systolicBP) +
-    administeredOxygenScoreCounter(administeredOxygen) +
-    avpuScoreCounter(avpu)
-  );
+  const scores = [
+    respiratoryScoreCounter(RR),
+    saturationScoreCounter(SpO2),
+    temperatureScoreCounter(temp),
+    heartRateScoreCounter(HR),
+    bloodPressureScoreCounter(systolicBP),
+    administeredOxygenScoreCounter(administeredOxygen),
+    avpuScoreCounter(avpu),
+  ];
+
+  const totalScore = scores.reduce((a, b) => a + b, 0);
+  const hasThreePoints = scores.some((score) => score >= 3);
+
+  return { totalScore, hasThreePoints };
 }
 
 export default totalScoreCounter;
