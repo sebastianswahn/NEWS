@@ -1,5 +1,6 @@
 function respiratoryScoreCounter(RR) {
   let respiratoryScore = 0;
+  if (!RR) return (respiratoryScore = 0);
 
   if (RR < 8) {
     respiratoryScore = 3;
@@ -17,6 +18,8 @@ function respiratoryScoreCounter(RR) {
 
 function saturationScoreCounter(SpO2) {
   let saturationScore = 0;
+  if (!SpO2) return (saturationScore = 0);
+
   if (SpO2 < 91) {
     saturationScore = 3;
   } else if (SpO2 >= 91 && SpO2 < 94) {
@@ -31,6 +34,8 @@ function saturationScoreCounter(SpO2) {
 
 function temperatureScoreCounter(temp) {
   let temperatureScore = 0;
+  if (!temp) return (temperatureScore = 0);
+
   if (temp <= 35) {
     temperatureScore = 3;
   } else if (temp >= 35.1 && temp < 36.1) {
@@ -48,6 +53,8 @@ function temperatureScoreCounter(temp) {
 
 function heartRateScoreCounter(HR) {
   let heartRateScore = 0;
+  if (!HR) return (heartRateScore = 0);
+
   if (HR < 40) {
     heartRateScore = 3;
   } else if (HR >= 40 && HR < 50) {
@@ -66,6 +73,8 @@ function heartRateScoreCounter(HR) {
 
 function bloodPressureScoreCounter(systolicBP) {
   let bloodPressureScore = 0;
+
+  if (!systolicBP) return (bloodPressureScore = 0);
   if (systolicBP < 90) {
     bloodPressureScore = 2;
   } else if (systolicBP >= 90 && systolicBP < 100) {
@@ -82,6 +91,8 @@ function bloodPressureScoreCounter(systolicBP) {
 
 function administeredOxygenScoreCounter(administeredOxygen) {
   let administeredOxygenScore = 0;
+  if (!administeredOxygen) return (administeredOxygenScore = 0);
+
   switch (administeredOxygen) {
     case "Yes":
       administeredOxygenScore = 2;
@@ -97,6 +108,8 @@ function administeredOxygenScoreCounter(administeredOxygen) {
 
 function avpuScoreCounter(avpu) {
   let avpuScore = 0;
+  if (!avpu) return (avpuScore = 0);
+
   switch (avpu) {
     case "A":
       avpuScore = 0;

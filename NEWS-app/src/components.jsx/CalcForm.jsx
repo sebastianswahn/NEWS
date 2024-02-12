@@ -17,23 +17,24 @@ export const CalcForm = () => {
   const [tempError, setTempError] = useState("");
   const [totalScore, setTotalScore] = useState(0);
   const [showScoreModal, setshowScoreModal] = useState(false);
+  const [warning, setWarning] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (RR < 1 || RR > 100) {
+    if (RR && (RR < 1 || RR > 100)) {
       setRRError("Please enter a number between 1-100");
       return;
     } else {
       setRRError("");
     }
-    if (SpO2 < 1 || SpO2 > 100) {
+    if (SpO2 && (SpO2 < 1 || SpO2 > 100)) {
       setSpO2Error("Please enter a % value between 1-100");
       return;
     } else {
       setSpO2Error("");
     }
-    if (systolicBP < 1 || systolicBP > 350) {
+    if (systolicBP && (systolicBP < 1 || systolicBP > 350)) {
       setsystolicBPError(
         "Please enter a valid millimeters of mercury systolic blood pressure value"
       );
@@ -41,17 +42,37 @@ export const CalcForm = () => {
     } else {
       setsystolicBPError("");
     }
-    if (HR < 1 || HR > 350) {
+    if (HR && (HR < 1 || HR > 350)) {
       setHRError("Please enter a valid heart rate");
       return;
     } else {
       setHRError("");
     }
-    if (temp < 10 || temp > 50) {
+    if (temp && (temp < 10 || temp > 50)) {
       setTempError("Please enter a valid temperature in celcius");
       return;
     } else {
       setTempError("");
+    }
+
+    let isFormIncomplete = false;
+
+    if (
+      !RR ||
+      !SpO2 ||
+      !systolicBP ||
+      !HR ||
+      !temp ||
+      !administeredOxygen ||
+      !avpu
+    ) {
+      isFormIncomplete = true;
+    }
+
+    if (isFormIncomplete) {
+      setWarning("Result is inconclusive because not all values are set.");
+    } else {
+      setWarning("");
     }
 
     const score = totalScoreCounter(
@@ -79,7 +100,11 @@ export const CalcForm = () => {
         onSubmit={handleSubmit}
       >
         {showScoreModal && (
-          <ScoreModal totalScore={totalScore} hideModal={hideModal} />
+          <ScoreModal
+            totalScore={totalScore}
+            hideModal={hideModal}
+            warning={warning}
+          />
         )}
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="RR">
@@ -117,6 +142,7 @@ export const CalcForm = () => {
             value={administeredOxygen}
             onChange={(e) => setAdministeredOxygen(e.target.value)}
           >
+            <option></option>
             <option>Yes</option>
             <option>No</option>
           </select>
@@ -157,6 +183,7 @@ export const CalcForm = () => {
             value={avpu}
             onChange={(e) => setAvpu(e.target.value)}
           >
+            <option></option>
             <option value="A">A</option>
             <option value="V">V</option>
             <option value="P">P</option>

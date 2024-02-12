@@ -1,6 +1,6 @@
 import React from "react";
 
-function ScoreModal({ totalScore, hideModal }) {
+function ScoreModal({ totalScore, hideModal, warning }) {
   let bgColorClass = "bg-emerald-500";
   let scoreAdvice = "";
 
@@ -22,6 +22,7 @@ function ScoreModal({ totalScore, hideModal }) {
     >
       <div className="mb-4">{totalScore}</div>
       <div className="mb-4">{scoreAdvice}</div>
+      {warning && <p className="text-red-500 py-2">{warning}</p>}
       <button
         className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded opacity-90"
         onClick={(event) => {
