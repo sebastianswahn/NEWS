@@ -31,18 +31,17 @@ function saturationScoreCounter(SpO2) {
 
 function temperatureScoreCounter(temp) {
   let temperatureScore = 0;
-  if (temp < 35) {
+  if (temp <= 35) {
     temperatureScore = 3;
-  } else if (temp >= 35 && temp < 36.1) {
+  } else if (temp >= 35.1 && temp < 36.1) {
     temperatureScore = 1;
-  } else if (temp >= 36.1 && temp < 38) {
+  } else if (temp >= 36.1 && temp <= 38) {
     temperatureScore = 0;
-  } else if (temp >= 38 && temp < 39) {
+  } else if (temp >= 38 && temp <= 39) {
     temperatureScore = 1;
-  } else if (temp >= 39) {
+  } else if (temp >= 39.1) {
     temperatureScore = 2;
   }
-  temperatureScore = 0;
 
   return temperatureScore;
 }
