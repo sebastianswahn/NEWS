@@ -11,6 +11,7 @@ export const CalcForm = () => {
   const [avpu, setAvpu] = useState("");
   const [temp, setTemp] = useState("");
   const [totalScore, setTotalScore] = useState(0);
+  const [showScoreModal, setshowScoreModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,7 +25,12 @@ export const CalcForm = () => {
       avpu
     );
     setTotalScore(score);
+    setshowScoreModal(true);
     console.log(totalScore);
+  };
+
+  const hideModal = () => {
+    setshowScoreModal(false);
   };
 
   return (
@@ -33,7 +39,9 @@ export const CalcForm = () => {
         className="bg-slate-400 p-4 flex-row m-auto"
         onSubmit={handleSubmit}
       >
-        <ScoreModal totalScore={totalScore} />
+        {showScoreModal && (
+          <ScoreModal totalScore={totalScore} hideModal={hideModal} />
+        )}
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="RR">
             Respiratory Rate
