@@ -1,14 +1,19 @@
 import React from "react";
-import CalcForm from "./components.jsx/CalcForm";
-import Header from "./components.jsx/header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CalcForm from "./components/CalcForm";
+import GraphResults from "./pages/GraphResults";
+import Navbar from "./components/Navbar";
 
-function App() {
+function RouterComponent() {
   return (
-    <div>
-      <Header />
-      <CalcForm />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<CalcForm />} />
+        <Route path="/graph" element={<GraphResults />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default App;
+export default RouterComponent;

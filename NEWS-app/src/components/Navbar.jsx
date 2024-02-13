@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function header() {
+export function Header() {
   return (
     <div className="bg-blue-400 flex width-screen h-16">
       <ul className="flex">
@@ -12,4 +12,4 @@ function header() {
   );
 }
 
-export default header;
+export default Header;
