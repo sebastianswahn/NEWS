@@ -1,6 +1,25 @@
 import React from "react";
 
-function ScoreModal({ totalScore, hideModal, warning, hasThreePoints }) {
+function ScoreModal({
+  totalScore,
+  hideModal,
+  warning,
+  hasThreePoints,
+  name,
+  setName,
+}) {
+  const saveScore = () => {
+    const timestamp = new Date();
+
+    let scores = JSON.parse(localStorage.getItem(name)) || [];
+
+    scores.push({ name, totalScore, timestamp: timestamp.toString() });
+
+    localStorage.setItem(name, JSON.stringify(scores));
+
+    hideModal();
+  };
+
   let bgColorClass = "bg-emerald-500";
   let scoreAdvice = "";
 
@@ -36,11 +55,13 @@ function ScoreModal({ totalScore, hideModal, warning, hasThreePoints }) {
         >
           Close
         </button>
-        <button className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded opacity-90">
+        <button
+          type="button"
+          onClick={saveScore}
+          className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded opacity-90"
+        >
           Save
-        </button>{" "}
-        {/*         //This button is going to save the score using a name which can be
-        chosen on graph page to see how the score has been changing over time */}
+        </button>
       </div>
     </div>
   );

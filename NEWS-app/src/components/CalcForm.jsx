@@ -19,6 +19,7 @@ export const CalcForm = () => {
   const [showScoreModal, setshowScoreModal] = useState(false);
   const [warning, setWarning] = useState("");
   const [hasThreePoints, setHasThreePoints] = useState(false);
+  const [name, setName] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -107,8 +108,22 @@ export const CalcForm = () => {
             hideModal={hideModal}
             warning={warning}
             hasThreePoints={hasThreePoints}
+            name={name}
+            setName={setName}
           />
         )}
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="name">
+            Patient Room
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="RR">
             Respiratory Rate
