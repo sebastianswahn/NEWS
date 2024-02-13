@@ -26,15 +26,22 @@ function ScoreModal({ totalScore, hideModal, warning, hasThreePoints }) {
       <div className="mb-4">{totalScore}</div>
       <div className="mb-4">{scoreAdvice}</div>
       {warning && <p className="text-red-500 py-2">{warning}</p>}
-      <button
-        className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded opacity-90"
-        onClick={(event) => {
-          event.preventDefault();
-          hideModal();
-        }}
-      >
-        Close
-      </button>
+      <div className="flex">
+        <button
+          className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded opacity-90 mx-2"
+          onClick={(event) => {
+            event.preventDefault();
+            hideModal();
+          }}
+        >
+          Close
+        </button>
+        <button className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded opacity-90">
+          Save
+        </button>{" "}
+        {/*         //This button is going to save the score using a name which can be
+        chosen on graph page to see how the score has been changing over time */}
+      </div>
     </div>
   );
 }
