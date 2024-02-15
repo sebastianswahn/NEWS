@@ -20,6 +20,7 @@ export const CalcForm = () => {
   const [warning, setWarning] = useState("");
   const [hasThreePoints, setHasThreePoints] = useState(false);
   const [name, setName] = useState("");
+  const [SpO22, setSpO22] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -150,6 +151,19 @@ export const CalcForm = () => {
           />
           {SpO2Error && <p className="text-red-500">{SpO2Error}</p>}
         </div>
+        {/*         <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="SpO2">
+            Saturation (2) on doctor's request
+          </label>
+          <input
+            type="number"
+            id="SpO2-2"
+            name="SpO2-2"
+            value={SpO2}
+            onChange={(e) => setSpO2(e.target.value)}
+          />
+          {SpO2Error && <p className="text-red-500">{SpO2Error}</p>}
+        </div> */}
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="administeredOxygen">
             Distributed Oxygen
