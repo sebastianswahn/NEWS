@@ -8,23 +8,19 @@ import { useEffect, useState } from "react";
 Chart.register(...registerables);
 
 function GraphResults() {
-  // Get the name from localStorage
   const name = localStorage.getItem("name");
   const [names, setNames] = useState([]);
   const [selectedName, setSelectedName] = useState("");
 
   useEffect(() => {
-    // Get all keys from localStorage
     const keys = Object.keys(localStorage);
     setNames(keys);
   }, []);
 
-  // Get the scores from localStorage
   const scores = selectedName
     ? JSON.parse(localStorage.getItem(selectedName)) || []
     : [];
 
-  // Extract the scores and timestamps
   const scoreData = scores.map((score) => score.totalScore);
   const timeData = scores.map((score) =>
     format(new Date(score.timestamp), "yyyy-MM-dd HH:mm:ss")
@@ -48,17 +44,17 @@ function GraphResults() {
       x: {
         type: "time",
         time: {
-          unit: "hour", // Change this to 'hour'
+          unit: "hour",
           displayFormats: {
-            hour: "ha", // Change this to display hours
+            hour: "ha",
           },
           ticks: {
-            stepSize: 1, // Add this to display every hour
+            stepSize: 1,
             source: "auto",
           },
         },
-        min: format(startOfDay(new Date()), "yyyy-MM-dd HH:mm:ss"), // Midnight of the current day
-        max: format(endOfDay(new Date()), "yyyy-MM-dd HH:mm:ss"), // End of the current day
+        min: format(startOfDay(new Date()), "yyyy-MM-dd HH:mm:ss"),
+        max: format(endOfDay(new Date()), "yyyy-MM-dd HH:mm:ss"),
       },
       y: {
         type: "linear",
