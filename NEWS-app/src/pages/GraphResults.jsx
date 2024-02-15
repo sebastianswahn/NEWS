@@ -34,7 +34,7 @@ function GraphResults() {
     labels: timeData,
     datasets: [
       {
-        label: name,
+        label: selectedName,
         data: scoreData,
         fill: false,
         backgroundColor: "rgb(75, 192, 192)",
