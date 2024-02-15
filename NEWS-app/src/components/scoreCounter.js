@@ -16,12 +16,12 @@ function respiratoryScoreCounter(RR) {
   return respiratoryScore;
 }
 
-function saturationScoreCounter2(SpO22, administeredOxygen) {
+function saturationScoreCounter2(SpO22, administeredOxygenScore) {
   let saturationScore2 = 0;
 
   if (!SpO22) return (saturationScore2 = 0);
 
-  if (administeredOxygen === "Yes") {
+  if (administeredOxygenScore == 2) {
     if (SpO22 >= 93 && SpO22 <= 94) {
       saturationScore2 = 1;
     } else if (SpO22 >= 95 && SpO22 <= 96) {
@@ -29,8 +29,7 @@ function saturationScoreCounter2(SpO22, administeredOxygen) {
     } else if (SpO22 >= 97) {
       saturationScore2 = 3;
     }
-  }
-  if (administeredOxygen === "Yes") {
+  } else if (administeredOxygenScore == 0) {
     if (SpO22 <= 83) {
       saturationScore2 = 3;
     } else if (SpO22 >= 84 && SpO22 <= 85) {
@@ -168,15 +167,18 @@ function totalScoreCounter(
   avpu,
   SpO22
 ) {
+  const administeredOxygenScore =
+    administeredOxygenScoreCounter(administeredOxygen);
+
   const scores = [
     respiratoryScoreCounter(RR),
     saturationScoreCounter(SpO2),
     temperatureScoreCounter(temp),
     heartRateScoreCounter(HR),
     bloodPressureScoreCounter(systolicBP),
-    administeredOxygenScoreCounter(administeredOxygen),
+    administeredOxygenScore,
     avpuScoreCounter(avpu),
-    saturationScoreCounter2(SpO22),
+    saturationScoreCounter2(SpO22, administeredOxygenScore),
   ];
 
   const totalScore = scores.reduce((a, b) => a + b, 0);

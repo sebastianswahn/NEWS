@@ -66,7 +66,6 @@ export const CalcForm = () => {
     } else if (SpO22) {
       setSpO2Error("");
     }
-
     let isFormIncomplete = false;
 
     /* change this if state to to not populate {warning} if one if them are set */
@@ -95,9 +94,9 @@ export const CalcForm = () => {
       Number(temp),
       Number(HR),
       Number(systolicBP),
-      Number(SpO22),
       administeredOxygen,
-      avpu
+      avpu,
+      Number(SpO22)
     );
     setTotalScore(totalScore);
     setHasThreePoints(hasThreePoints);
