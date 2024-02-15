@@ -21,6 +21,7 @@ export const CalcForm = () => {
   const [hasThreePoints, setHasThreePoints] = useState(false);
   const [name, setName] = useState("");
   const [SpO22, setSpO22] = useState("");
+  const [SpO22Error, setSpO22Error] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,8 +58,18 @@ export const CalcForm = () => {
     } else {
       setTempError("");
     }
+    if (SpO22 && (SpO22 < 1 || SpO22 > 100)) {
+      setSpO2Error("Please enter a % value between 1-100");
+      return;
+    } else if (SpO22 && SpO2) {
+      setSpO2Error("You can only fill either SpO2 or SpO2 2");
+    } else if (SpO22) {
+      setSpO2Error("");
+    }
 
     let isFormIncomplete = false;
+
+    /* change this if state to to not populate {warning} if one if them are set */
 
     if (
       !RR ||
@@ -84,6 +95,7 @@ export const CalcForm = () => {
       Number(temp),
       Number(HR),
       Number(systolicBP),
+      Number(SpO22),
       administeredOxygen,
       avpu
     );
@@ -151,19 +163,19 @@ export const CalcForm = () => {
           />
           {SpO2Error && <p className="text-red-500">{SpO2Error}</p>}
         </div>
-        {/*         <div className="flex flex-col p-4">
-          <label className="pb-2" htmlFor="SpO2">
-            Saturation (2) on doctor's request
+        <div className="flex flex-col p-4">
+          <label className="pb-2" htmlFor="SpO22">
+            Saturation 2 on doctor's request
           </label>
           <input
             type="number"
-            id="SpO2-2"
-            name="SpO2-2"
-            value={SpO2}
-            onChange={(e) => setSpO2(e.target.value)}
+            id="SpO22"
+            name="SpO222"
+            value={SpO22}
+            onChange={(e) => setSpO22(e.target.value)}
           />
-          {SpO2Error && <p className="text-red-500">{SpO2Error}</p>}
-        </div> */}
+          {SpO22Error && <p className="text-red-500">{SpO22Error}</p>}
+        </div>
         <div className="flex flex-col p-4">
           <label className="pb-2" htmlFor="administeredOxygen">
             Distributed Oxygen
