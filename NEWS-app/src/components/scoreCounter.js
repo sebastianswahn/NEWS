@@ -4,13 +4,13 @@ function respiratoryScoreCounter(RR) {
 
   if (RR < 8) {
     respiratoryScore = 3;
-  } else if (RR >= 8 && RR < 12) {
+  } else if (RR >= 9 && RR < 12) {
     respiratoryScore = 1;
-  } else if (RR >= 12 && RR < 20) {
+  } else if (RR >= 12 && RR <= 20) {
     respiratoryScore = 0;
-  } else if (RR >= 20 && RR < 24) {
+  } else if (RR >= 21 && RR <= 24) {
     respiratoryScore = 2;
-  } else if (RR >= 24) {
+  } else if (RR >= 25) {
     respiratoryScore = 3;
   }
   return respiratoryScore;
@@ -48,11 +48,11 @@ function saturationScoreCounter(SpO2) {
   let saturationScore = 0;
   if (!SpO2) return (saturationScore = 0);
 
-  if (SpO2 < 91) {
+  if (SpO2 <= 91) {
     saturationScore = 3;
-  } else if (SpO2 >= 91 && SpO2 < 94) {
+  } else if (SpO2 >= 92 && SpO2 <= 93) {
     saturationScore = 2;
-  } else if (SpO2 >= 94 && SpO2 < 96) {
+  } else if (SpO2 >= 94 && SpO2 <= 95) {
     saturationScore = 1;
   } else if (SpO2 >= 96) {
     saturationScore = 0;
@@ -64,13 +64,13 @@ function temperatureScoreCounter(temp) {
   let temperatureScore = 0;
   if (!temp) return (temperatureScore = 0);
 
-  if (temp <= 35) {
+  if (temp <= 35.0) {
     temperatureScore = 3;
-  } else if (temp >= 35.1 && temp < 36.1) {
+  } else if (temp >= 35.1 && temp <= 36.0) {
     temperatureScore = 1;
-  } else if (temp >= 36.1 && temp <= 38) {
+  } else if (temp >= 36.1 && temp <= 38.0) {
     temperatureScore = 0;
-  } else if (temp >= 38 && temp <= 39) {
+  } else if (temp >= 38.1 && temp <= 39.0) {
     temperatureScore = 1;
   } else if (temp >= 39.1) {
     temperatureScore = 2;
@@ -83,17 +83,17 @@ function heartRateScoreCounter(HR) {
   let heartRateScore = 0;
   if (!HR) return (heartRateScore = 0);
 
-  if (HR < 40) {
+  if (HR <= 40) {
     heartRateScore = 3;
-  } else if (HR >= 40 && HR < 50) {
+  } else if (HR >= 41 && HR <= 50) {
     heartRateScore = 1;
-  } else if (HR >= 50 && HR < 90) {
+  } else if (HR >= 51 && HR <= 90) {
     heartRateScore = 0;
-  } else if (HR >= 90 && HR < 110) {
+  } else if (HR >= 91 && HR <= 110) {
     heartRateScore = 1;
-  } else if (HR >= 110) {
+  } else if (HR >= 111 && HR <= 130) {
     heartRateScore = 2;
-  } else if (HR >= 130) {
+  } else if (HR >= 131) {
     heartRateScore = 3;
   }
   return heartRateScore;
@@ -103,22 +103,24 @@ function bloodPressureScoreCounter(systolicBP) {
   let bloodPressureScore = 0;
 
   if (!systolicBP) return (bloodPressureScore = 0);
-  if (systolicBP < 90) {
+
+  if (systolicBP <= 90) {
+    bloodPressureScore = 3;
+  } else if (systolicBP >= 91 && systolicBP <= 100) {
     bloodPressureScore = 2;
-  } else if (systolicBP >= 90 && systolicBP < 100) {
-    bloodPressureScore = 2;
-  } else if (systolicBP >= 100 && systolicBP < 110) {
+  } else if (systolicBP >= 101 && systolicBP <= 110) {
     bloodPressureScore = 1;
-  } else if (systolicBP >= 110 && systolicBP < 219) {
+  } else if (systolicBP >= 111 && systolicBP <= 219) {
     bloodPressureScore = 0;
   } else if (systolicBP >= 220) {
-    bloodPressureScore = 2;
+    bloodPressureScore = 3;
   }
   return bloodPressureScore;
 }
 
 function administeredOxygenScoreCounter(administeredOxygen) {
   let administeredOxygenScore = 0;
+
   if (!administeredOxygen) return (administeredOxygenScore = 0);
 
   switch (administeredOxygen) {
@@ -142,11 +144,14 @@ function avpuScoreCounter(avpu) {
     case "A":
       avpuScore = 0;
       break;
+    case "C":
+      avpuScore = 3;
+      break;
     case "V":
-      avpuScore = 1;
+      avpuScore = 3;
       break;
     case "P":
-      avpuScore = 2;
+      avpuScore = 3;
       break;
     case "U":
       avpuScore = 3;

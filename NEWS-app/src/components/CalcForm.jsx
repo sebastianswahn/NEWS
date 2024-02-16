@@ -65,6 +65,7 @@ export const CalcForm = () => {
       setSpO2Error("You can only fill either SpO2 or SpO2 2");
     } else if (SpO22) {
       setSpO2Error("");
+      return;
     }
     let isFormIncomplete = false;
 
@@ -72,7 +73,7 @@ export const CalcForm = () => {
 
     if (
       !RR ||
-      !SpO2 ||
+      (!SpO2 && !SpO2) ||
       !systolicBP ||
       !HR ||
       !temp ||
@@ -228,6 +229,7 @@ export const CalcForm = () => {
           >
             <option></option>
             <option value="A">A</option>
+            <option value="C">C</option>
             <option value="V">V</option>
             <option value="P">P</option>
             <option value="U">U</option>
