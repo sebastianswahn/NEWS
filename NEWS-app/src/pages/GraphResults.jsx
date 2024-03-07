@@ -79,6 +79,18 @@ function GraphResults() {
         ))}
       </select>
       <Line data={data} options={options} />
+      <div className="flex justify-center mt-6">
+        <div className="text-center">
+          <button className="rounded-lg bg-blue-400 hover:bg-blue-500 p-1">
+            Clear Data
+          </button>
+        </div>
+        <div className="text-center ml-12">
+          <button className="rounded-lg bg-blue-400 hover:bg-blue-500 p-1">
+            Print & Clear
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
