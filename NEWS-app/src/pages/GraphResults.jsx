@@ -68,6 +68,19 @@ function GraphResults() {
     setSelectedName(event.target.value);
   };
 
+  function handlePrintAndClear() {
+    window.print();
+  }
+
+  function clearData() {
+    window.confirm(
+      "Remember to print your results before clearing data! Confirming will delete all NEWS data on ALL patients"
+    );
+    localStorage.clear();
+    setNames([]);
+    setSelectedName("");
+  }
+
   return (
     <div className="mx-2 my-6 w-full h-[80vh]">
       <select value={selectedName} onChange={handleSelectChange}>
@@ -81,13 +94,21 @@ function GraphResults() {
       <Line data={data} options={options} />
       <div className="flex justify-center mt-6">
         <div className="text-center">
-          <button className="rounded-lg bg-blue-400 hover:bg-blue-500 p-1">
+          <button
+            id="clearBtn"
+            className="rounded-lg w-32 bg-blue-400 hover:bg-blue-500 p-1"
+            onClick={clearData}
+          >
             Clear Data
           </button>
         </div>
         <div className="text-center ml-12">
-          <button className="rounded-lg bg-blue-400 hover:bg-blue-500 p-1">
-            Print & Clear
+          <button
+            onClick={handlePrintAndClear}
+            id="printBtn"
+            className="rounded-lg w-32 bg-blue-400 hover:bg-blue-500 p-1"
+          >
+            Print
           </button>
         </div>
       </div>
