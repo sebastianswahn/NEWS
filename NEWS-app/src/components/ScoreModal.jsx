@@ -1,13 +1,13 @@
-import React from "react";
 
-function ScoreModal({
+
+export const ScoreModal = ({
   totalScore,
   hideModal,
   warning,
   hasThreePoints,
   name,
   setName,
-}) {
+}) => {
   const saveScore = () => {
     const timestamp = new Date();
 
@@ -65,6 +65,4 @@ function ScoreModal({
       </div>
     </div>
   );
-}
-
-export default ScoreModal;
+};
